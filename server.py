@@ -1,5 +1,9 @@
+import logging
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+
+_logger = logging.getLogger(__name__)
 
 
 class Server(BaseHTTPRequestHandler):
@@ -37,7 +41,7 @@ def run(server_class=HTTPServer, handler_class=Server, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
 
-    print('Starting httpd on port %d', port)
+    _logger.info('Starting httpd on port %d', port)
     httpd.serve_forever()
 
 
