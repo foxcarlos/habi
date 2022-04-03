@@ -18,13 +18,14 @@ class Server(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """GET Methods."""
+
         self._config_headers()
         length = int(self.headers['content-length'])
         body_json_recived = json.loads(self.rfile.read(length))
         path = self.path
 
-        ControllersInmueble(body_json_recived, path)
-        self.wfile.write(json.dumps({'response': 'test get method', 'received': 'ok'}).encode('utf-8'))
+        response = ControllersInmueble(body_json_recived, path)
+        self.wfile.write(json.dumps({'response': response.values, 'received': 'ok'}).encode('utf-8'))
 
     def do_POST(self):
         """POST Methods."""
