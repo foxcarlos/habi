@@ -1,5 +1,7 @@
 import logging
 
+from models.inmuebles import ModelsInmueble
+
 _logger = logging.getLogger(__name__)
 
 
@@ -23,27 +25,14 @@ class ControllersInmueble:
         return self.values
 
     def _search_by_state(self, body_json_recived):
-        """Serach depto by state."""
+        """Controllers Search depto by state."""
 
-        # "pre_venta”,
-        # “en_venta”
-        # “vendido”
-        # (los inmuebles con estados distintos nunca deben ser visibles por el usuario)
-        # Los usuarios pueden ver la siguiente información del inmueble: Dirección, Ciudad,
-        # Estado, Precio de venta y Descripción.
-
-        self.values = {"inmuebles por estado": ['uno', 'dos', 'tres']}
+        response = ModelsInmueble.search_by_state(self, body_json_recived)
+        self.values = response
         return self.values
 
     def _filter_by(self, body_json_recived):
-        """Filter inmuebles by: Construnction Years, City, Province."""
+        """Controllers Filter inmuebles by: Construnction Years, City, Province."""
 
-        # Los usuarios pueden filtrar estos inmuebles por:
-        # Año de construcción,
-        # Ciudad,
-        # Estado.
-        # Los usuarios pueden aplicar varios filtros en la misma consulta.
-        # Los usuarios pueden ver la siguiente información del inmueble: Dirección, Ciudad,
-        # Estado, Precio de venta y Descripción.
         self.values = {"inmuebles por A;o, ciudad, Estado": ['cuatro', 'cinco', 'seis']}
         return self.values
