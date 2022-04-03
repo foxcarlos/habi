@@ -1,4 +1,5 @@
 import logging
+from controllers.inmuebles import ControllersInmueble
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
@@ -18,6 +19,11 @@ class Server(BaseHTTPRequestHandler):
     def do_GET(self):
         """GET Methods."""
         self._config_headers()
+        length = int(self.headers['content-length'])
+        body_json_recived = json.loads(self.rfile.read(length))
+        path = self.path
+
+        controllers = ControllersInmueble(body_json_recived, path)
         self.wfile.write(json.dumps({'response': 'test get method', 'received': 'ok'}).encode('utf-8'))
 
     def do_POST(self):
