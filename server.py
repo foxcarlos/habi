@@ -1,8 +1,8 @@
-import logging
-from controllers.inmuebles import ControllersInmueble
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import logging
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+from controllers.inmuebles import ControllersInmueble
 
 _logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ class Server(BaseHTTPRequestHandler):
         body_json_recived = json.loads(self.rfile.read(length))
         path = self.path
 
-        controllers = ControllersInmueble(body_json_recived, path)
+        ControllersInmueble(body_json_recived, path)
         self.wfile.write(json.dumps({'response': 'test get method', 'received': 'ok'}).encode('utf-8'))
 
     def do_POST(self):
