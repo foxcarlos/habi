@@ -1,6 +1,34 @@
 import logging
+from getpass import getpass
+
+from mysql.connector import Error, connect
 
 _logger = logging.getLogger(__name__)
+
+# cnx = mysql.connector.connect(host="", port=3309, user='', password='')
+
+
+class DBConnect:
+    host = "3.130.126.210"
+    port = 3309
+    user = ""
+    password = ""
+
+    def my_connect(self):
+        """Connect Method."""
+        connection = False
+
+        try:
+            connection = connect(
+                host=self.host,
+                port=self.port,
+                user=input("Ingrese el usuario"),
+                password=getpass("Ingrese el password"),
+            )
+        except Error as error:
+            _logger.error(error)
+
+        return connection
 
 
 class ModelsInmueble:
