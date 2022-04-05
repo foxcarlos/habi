@@ -37,6 +37,54 @@ class DBApi:
 
 
 class ModelsInmueble:
+    def parse_search_data(self, result):
+        rows = []
+        for _id, property_id, address, city, price, description, status_id, status_name in result:
+            vals = {
+                'id': _id,
+                'property_id': property_id,
+                'address': address,
+                'city': city,
+                'price': price,
+                'description': description,
+                'status_id': status_id,
+                'status_name': status_name,
+            }
+            rows.append(vals)
+        return rows
+
+    def search_by_status_name(self, body_json_recived):
+        """Search depto by status.
+        Params recived:
+        Method GET:
+        Body Raw: {"status_search": ['pre_venta', 'en_venta', 'vendido']} # Pudiera ser un POST
+        Content-Type: JSON"""
+
+        sentence = ''
+        get_status_names = body_json_recived.get('status_search') or []
+        for value in get_status_names:
+            sentence += f"'{value}',"
+
+        sentence = sentence[:-1] if sentence.endswith(',') else sentence
+        status_names = sentence or '"pre_venta", "en_venta", "vendido"'
+        # Por defecto si no se selecciona ninguna busqueda devuelve esos 3
+
+        sql_query = f"""select sh.id, sh.property_id, p.address, p.city, p.price, p.description, sh.status_id,
+        s.name from status_history as sh
+        left join `status` as s on sh.status_id = s.id
+        left join property as p on sh.property_id = p.id
+        where s.name in ({status_names})
+        """
+        rows = []
+        db = DBApi()
+        db.connect()
+        result = db.exec_query(sql_query)
+        db.connection.close()
+        rows = self.parse_search_data(result)
+
+        values = {"inmuebles por status": rows}
+        return values
+
     def search_by_status(self, body_json_recived):
         """Search depto by status.
         Params recived:
@@ -59,19 +107,7 @@ class ModelsInmueble:
         db.connection.close()
 
         rows = []
-        for _id, property_id, address, city, price, description, status_id, status_name in result:
-            vals = {
-                'id': _id,
-                'property_id': property_id,
-                'address': address,
-                'city': city,
-                'price': price,
-                'description': description,
-                'status_id': status_id,
-                'status_name': status_name,
-            }
-            rows.append(vals)
-
+        rows = self.parse_search_data(result)
         values = {"inmuebles por status": rows}
         return values
 
@@ -112,5 +148,5 @@ class ModelsInmueble:
             }
             rows.append(vals)
 
-        values = {"inmuebles por A;o, ciudad, status": rows}
+        values = {"inmuebles por Anio, ciudad, status": rows}
         return values
