@@ -58,7 +58,21 @@ class ModelsInmueble:
         result = db.exec_query(sql_query)
         db.connection.close()
 
-        values = {"inmuebles por status": result}
+        rows = []
+        for _id, property_id, address, city, price, description, status_id, status_name in result:
+            vals = {
+                'id': _id,
+                'property_id': property_id,
+                'address': address,
+                'city': city,
+                'price': price,
+                'description': description,
+                'status_id': status_id,
+                'status_name': status_name,
+            }
+            rows.append(vals)
+
+        values = {"inmuebles por status": rows}
         return values
 
     def filter_by(self, body_json_recived):
@@ -84,5 +98,19 @@ class ModelsInmueble:
         result = db.exec_query(where_sentence.strip())
         db.connection.close()
 
-        values = {"inmuebles por A;o, ciudad, status": result}
+        rows = []
+        for _id, address, city, price, description, year, id_status, status_name in result:
+            vals = {
+                'id': _id,
+                'address': address,
+                'city': city,
+                'price': price,
+                'description': description,
+                'year': year,
+                'id_status': id_status,
+                'status_name': status_name,
+            }
+            rows.append(vals)
+
+        values = {"inmuebles por A;o, ciudad, status": rows}
         return values
