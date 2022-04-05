@@ -1,15 +1,26 @@
 import logging
+import os
+from configparser import ConfigParser
 
 from mysql.connector import Error, connect
 
 _logger = logging.getLogger(__name__)
 
 
+current_path = os.path.dirname(os.path.abspath(__file__))
+path_conf = os.path.dirname(current_path)
+file = os.path.join(path_conf, 'app.conf')
+
+parser = ConfigParser()
+parser.read(file)
+
+
 class DBApi:
-    host = "3.130.126.210"
-    port = 3309
-    user = "pruebas"
-    password = "VGbt3Day5R"
+
+    host = parser.get('MYSQL', 'host')  # "3.130.126.210"
+    port = parser.get('MYSQL', 'port')  # 3309
+    user = parser.get('MYSQL', 'user')  # "pruebas"
+    password = parser.get('MYSQL', 'password')  # "VGbt3Day5R"
 
     def connect(self):
         """Connect Method."""
