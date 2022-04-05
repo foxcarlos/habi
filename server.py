@@ -20,6 +20,10 @@ class Server(BaseHTTPRequestHandler):
         """GET Methods."""
 
         self._config_headers()
+        if not self.headers['content-length']:
+            self.wfile.write(json.dumps({'response': 'Consulta no puede estar vacia'}).encode('utf-8'))
+            return False
+
         length = int(self.headers['content-length'])
         body_json_recived = json.loads(self.rfile.read(length))
         path = self.path

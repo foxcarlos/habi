@@ -32,7 +32,8 @@ class ControllersInmueble:
         return self.values
 
     def _filter_by(self, body_json_recived):
-        """Controllers Filter inmuebles by: Construnction Years, City, Province."""
+        """Controllers Filter inmuebles by: Construnction Years, City, status."""
 
-        self.values = {"inmuebles por A;o, ciudad, Estado": ['cuatro', 'cinco', 'seis']}
+        response = ModelsInmueble.filter_by(self, body_json_recived)
+        self.values = response
         return self.values
