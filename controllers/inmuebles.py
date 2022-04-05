@@ -12,7 +12,7 @@ class ControllersInmueble:
         _logger.info(body_json_recived, path)
 
         if path == '/search/inmuebles/':
-            self._search_by_state(body_json_recived)
+            self._search_by_status(body_json_recived)
 
         elif path == '/filter/':
             self._filter_by(body_json_recived)
@@ -24,10 +24,10 @@ class ControllersInmueble:
         self.values = {"message": "PAGE NOT FOUND"}
         return self.values
 
-    def _search_by_state(self, body_json_recived):
-        """Controllers Search depto by state."""
+    def _search_by_status(self, body_json_recived):
+        """Controllers Search depto by status."""
 
-        response = ModelsInmueble.search_by_state(self, body_json_recived)
+        response = ModelsInmueble.search_by_status(self, body_json_recived)
         self.values = response
         return self.values
 
