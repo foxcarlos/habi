@@ -55,6 +55,14 @@ Pasos a seguir para la contruccion:
 
 4.- Servicio de “Me gusta”
     4.1 Hacer el analisis de entidad relacion para el servicio Me Gusta.
+    - Una Tabla llamada historico_me_gusta
+        Campos:
+        - id
+        - property_id
+        - user_id
+        - date
+        - me_gusta default=true
+
 
 5.- Crear los Test Case
     - para ejecutar los test ejecutar desde consola:
