@@ -2,7 +2,7 @@
 import unittest
 
 from controllers.inmuebles import ControllersInmueble
-from models.inmuebles import ModelsInmueble, DBApi
+from models.inmuebles import DBApi, ModelsInmueble
 
 
 class TestControllers(unittest.TestCase):
@@ -60,8 +60,18 @@ class TestModelsInmueble(unittest.TestCase):
         self.assertEqual(result, [])
 
     def test_parse_search_data_ok(self):
-        data = [(3, 1, 'calle 23 #45-67', 'bogota', 120000000,
-                'Hermoso apartamento en el centro de la ciudad', 3, 'pre_venta')]
+        data = [
+            (
+                3,
+                1,
+                'calle 23 #45-67',
+                'bogota',
+                120000000,
+                'Hermoso apartamento en el centro de la ciudad',
+                3,
+                'pre_venta',
+            )
+        ]
         model_inmueble = ModelsInmueble()
         result = model_inmueble.parse_search_data(data)
         self.assertTrue(result)
