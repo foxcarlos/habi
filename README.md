@@ -12,11 +12,11 @@ Pasos a seguir para la contruccion:
 
 1. Crear el servicio de ApiRest usando el modulo http.server,esto incluye los metodos GET y POST('En caso de ser necesario')
     - Desde consola instalar los requirements:
-    $ python3.9 --version o Superior
-    $ pip install requirements.txt
+     - $ python3.9 --version o Superior
+     - $ pip install requirements.txt
 
-    Para levantar el servidor ejecutar:
-    $ python server.py
+    - Para levantar el servidor ejecutar:
+     - $ python server.py
 
 2. Crear la conexion con la base de datos mysql y hacer pruebas de consulta con pytnon y con alguna app GUI.
     - Para conectarse y realizar consultas a la base de datos desde un archivo .py o desde una shell python:
