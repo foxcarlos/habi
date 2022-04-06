@@ -21,13 +21,13 @@ Pasos a seguir para la contruccion:
 2. Crear la conexion con la base de datos mysql y hacer pruebas de consulta con pytnon y con alguna app GUI.
     - Para conectarse y realizar consultas a la base de datos desde un archivo .py o desde una shell python:
 
-    from models.inmuebles import DBApi
+     - from models.inmuebles import DBApi
 
-    db = DBApi()
-    db.connect()
-    result = db.exec_query("Select * FROM status")
-    print(result)
-    db.connection.close()
+      - db = DBApi()
+      - db.connect()
+      - result = db.exec_query("Select * FROM status")
+      - print(result)
+      - db.connection.close()
 
 3. Al tener creado el servicio Apirest proceder a crear los Servicios de consulta basados en las peticiones json (No se incluira Frontend, solo las peticiones desde PostMan)
     - 3.1 Los usuarios pueden consultar los inmuebles con los estados: “pre_venta”, “en_venta” y “vendido” (los inmuebles con estados distintos nunca deben ser visibles por el usuario).
