@@ -63,6 +63,7 @@ Pasos a seguir para la contruccion:
         - user_id
         - date
         - me_gusta default=true
+    ![This is an image](https://github.com/foxcarlos/habi/blob/main/relacion.png)
 
 
 5. Crear los Test Case
