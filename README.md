@@ -64,7 +64,7 @@ Pasos a seguir para la contruccion:
         - date
         - me_gusta default=true
         
-![image](https://github.com/foxcarlos/habi/blob/main/relacion.png)
+    ![image](https://github.com/foxcarlos/habi/blob/main/relacion.png)
 
 
 5. Crear los Test Case
