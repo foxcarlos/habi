@@ -37,22 +37,22 @@ Pasos a seguir para la contruccion:
 
     Para realizar pruebas desde consola hacer las siguientes peticiones:
     - Para Buscar inmuebles por el id del estado:
-    $ curl -X GET -d '{"status_search": [3]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/
+      - $ curl -X GET -d '{"status_search": [3]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/
 
     - Buscar por varios ID de estados a la vez:
-    $ curl -X GET -d '{"status_search": [3, 4, 5]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/
+      - $ curl -X GET -d '{"status_search": [3, 4, 5]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/
 
     - Buscar por nombres de estados (un solo estado o varios a la vez)
-    $ curl -X GET -d '{"status_search": ["pre_venta", "vendido"]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/name/
-    $ curl -X GET -d '{"status_search": ["en_venta"]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/name/
+      - $ curl -X GET -d '{"status_search": ["pre_venta", "vendido"]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/name/
+      - $ curl -X GET -d '{"status_search": ["en_venta"]}' -H "Content-Type: application/json" http://localhost:8000/search/inmuebles/name/
 
     - Para filtrar inmuebles por diferentes campos:
-    $ curl -X GET -d '{"year": "2000"}' -H "Content-Type: application/json" http://localhost:8000/filter/
-    $ curl -X GET -d '{"city": "bogota"}' -H "Content-Type: application/json" http://localhost:8000/filter/
-    $ curl -X GET -d '{"status_name": "pre_venta"}' -H "Content-Type: application/json" http://localhost:8000/filter/
+      - $ curl -X GET -d '{"year": "2000"}' -H "Content-Type: application/json" http://localhost:8000/filter/
+      - $ curl -X GET -d '{"city": "bogota"}' -H "Content-Type: application/json" http://localhost:8000/filter/
+      - $ curl -X GET -d '{"status_name": "pre_venta"}' -H "Content-Type: application/json" http://localhost:8000/filter/
 
     - Por varios campos a la vez:
-    $ curl -X GET -d '{"year": "2000", "city": "bogota", "status_name": "pre_venta"}' -H "Content-Type: application/json" http://localhost:8000/filter/
+      - $ curl -X GET -d '{"year": "2000", "city": "bogota", "status_name": "pre_venta"}' -H "Content-Type: application/json" http://localhost:8000/filter/
 
 4. Servicio de “Me gusta”
     - 4.1 Hacer el analisis de entidad relacion para el servicio Me Gusta.
@@ -67,9 +67,9 @@ Pasos a seguir para la contruccion:
 
 5. Crear los Test Case
     - para ejecutar los test ejecutar desde consola:
-    $ python test_controllers.py
+      - $ python test_controllers.py
 
 
-# DESAFIOS:
-    Siempre he trabajado con framework para realizar estas acciones
-    Tengo bastante tiempo que no trabajo con MYSQL
+6. DESAFIOS:
+  - Siempre he trabajado con framework para realizar estas acciones
+  - Tengo bastante tiempo que no trabajo con MYSQL
